@@ -76,8 +76,8 @@ sample process :
 
   - 最后将 rule-based caption 和生成的补充信息当作事实锚点，引导 VLM 生成自由文本格式的描述
 
-![CoVLA-Dataset_frame_examples](./pictures/CoVLA-Dataset_frame_examples.png)
-
+![CoVLA-Dataset_frame_examples](./pictures/屏幕截图%202025-04-05%20160334.png)
+ 
 ## Data Analysis 
 
 - statistics : 覆盖更多复杂/边缘驾驶场景，不仅是大量无聊的 “正常行驶” 状态
