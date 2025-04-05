@@ -134,7 +134,7 @@ sample process :
 
 ### discussion 
 
-![CoVLA-Agent_trajectory_prediction_results](./pictures/%20CoVLA-Agent_trajectory_prediction_results.png)
+![CoVLA-Agent_trajectory_prediction_results](./pictures/CoVLA-Agent_trajectory_prediction_results.png)
 
 注意到图 d 中实际字幕包含 “moving straight”，预测字幕包含 “turn right”，在这两种不同字幕预测下，轨迹有明显的区别，这既说明了此类场景难以从单帧图像估计轨迹，又说明了 CoVLA-Agent 中语言动作的一致性。
 
