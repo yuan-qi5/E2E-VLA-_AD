@@ -2,6 +2,10 @@
 
 > 由于本人较菜(qwq)以及刚接触 vla ,会记录更多的基础知识,以引用方式区分论文部分与基础知识
 
+![CoVLA_framework_overview](./pictures/CoVLA_framework_overview.png)
+
+![driving_datasets_comparison](./pictures/driving_datasets_comparison.png)
+
 ## Dataset Constrcution 
 
 - [raw data][1]
@@ -15,6 +19,10 @@
 [4]:https://github.com/yuan-qi5/VLA/blob/main/paper/CoVLA.md#auto-captioning
 
 ### raw data
+
+- data collection period : 6 months (summer to winter) 得到 1000h data
+
+- data collection environments : 不同位置，不同天气条件，不同时间
 
 ### data sampling 
 
