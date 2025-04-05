@@ -9,10 +9,10 @@
 - [auto labeling][3]
 - [auto captioning][4]
 
-[1]:
-[2]:
-[3]:
-[4]:
+[1]:https://github.com/yuan-qi5/VLA/blob/main/paper/CoVLA.md#raw-data
+[2]:https://github.com/yuan-qi5/VLA/blob/main/paper/CoVLA.md#data-sampling
+[3]:https://github.com/yuan-qi5/VLA/blob/main/paper/CoVLA.md#auto-labeling
+[4]:https://github.com/yuan-qi5/VLA/blob/main/paper/CoVLA.md#auto-captioning
 
 ### raw data
 
