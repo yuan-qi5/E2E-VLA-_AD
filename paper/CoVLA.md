@@ -148,6 +148,8 @@ sample process :
 
 基于上述结果，认为由模型生成的 captions 导致预测轨迹表现差，主要是因为从单帧图像中推测驾驶意图是非常困难的。
 
+![top-10_words_ADE_FDE.png](./pictures/top-10_words_ADE_FDE.png)
+
 > stopwords（停用词）: 像 "the", "is", "at", "in" 等这些对语义影响不大的词
 
 ## Supplementary Material
