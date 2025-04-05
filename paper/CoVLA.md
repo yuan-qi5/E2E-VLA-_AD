@@ -54,7 +54,7 @@ sample process :
 
   -  有时 GNSS 数据的不稳定性会导致错误的轨迹，表现为显著的振动，使用一种[启发式][5]方法去识别并删除不准确的轨迹
 
-[5]:
+[5]:https://github.com/yuan-qi5/VLA/blob/main/paper/CoVLA.md#heuristic-trajectory-filtering
 
 > Kalman Filter（卡尔曼滤波器）：一种递归算法，用于估计动态系统中的状态。核心思想是融合预测值和实际观测值，在不确定性中找到最优估计，通过 “预测 --> 更新” 来不断迭代。在此场景中，GNSS 更新频率慢但稳定，IMU 高频率但漂移，可通过卡尔曼滤波器有效融合起来。
 >
