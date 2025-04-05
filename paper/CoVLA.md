@@ -76,6 +76,8 @@ sample process :
 
   - 最后将 rule-based caption 和生成的补充信息当作事实锚点，引导 VLM 生成自由文本格式的描述
 
+![CoVLA-Dataset_frame_examples](./pictures/CoVLA-Dataset_frame_examples.png)
+
 ## Data Analysis 
 
 - statistics : 覆盖更多复杂/边缘驾驶场景，不仅是大量无聊的 “正常行驶” 状态
@@ -90,8 +92,63 @@ sample process :
  
   - 包含轨迹标注，即记录车辆运动路径的数据，通常包括每个时刻的位置、速度、加速度等 
 
+  - 无缝集成了视觉、语言和动作模态
+
+- limitation :
+
+  - 生成的字幕中存在错误，如描述了不存在的物体，物体位置描述错误等
+ 
+  - 对当地特殊地标的准确识别
+  
 ## Experiment 
 
+提出基线模型（base model），CoVLA-Agent
+
+### model 
+
+- architecture : 采用预训练 Llama-2(7B)作为语言模型，CLIP ViT-L(224 $\times$ 224 pixels)作为视觉编码器，此外将 ego vehicle's speed 用 MLP 投影嵌入。
+
+![CoVLA-Agent_architecture](./pictures/CoVLA-Agent_architecture.png)  
+
+- training ：在两个下游任务：traffic scene description generation 和 trajectory prediction ，前者采用 cross entropy loss，后者采用 MSE loss，并赋以相同的权重
+
+### experimental setting
+
+- data ：使用 CoVLA-Dataset，将 10000 个场景(scene)分为 70/15/15 for training/validation/testing。
+
+  - 每个 scene 用 2HZ 采样，剔除不包含后续 3 秒所有轨迹点坐标的帧（共 60 帧）。再从这 60 个坐标点中采样 10 个点来表示未来的轨迹。得到一个包含 302,989/64,153/64,920 的数据子集。
+
+  - 再将训练和验证数据集预处理成 LLaVA 指令微调格式（包括 system prompt, user instruction, assistant response）。
+
+> LLaVA (Large Language and Vision Assistant) ：一种多模态模型，能输入图像 + 文本指令，并输出自然语言回答，基于大语言模型 + 图像编码器的架构。
+
+- conditions : 为检查字幕对后续轨迹预测影响，准备两种条件 : predicted caption condition（采用 CoVLA-Agent 生成的字幕） 和 ground truth caption condition （采用真实的字幕）
+
+- metrics : 采用 ADE(Average Displacement Error) 和 FDE (Final Displacement Error) 去评估轨迹预测准确率
+
+![ADE_FDE_compute](./pictures/ADE_FDE_compute.png)
+
+### results
+
+![two_conditions_comparison](./pictures/two_conditions_comparison.png)
+
+### discussion 
+
+![CoVLA-Agent_trajectory_prediction_results](./pictures/CoVLA-Agent_trajectory_prediction_results.png)
+
+注意到图 d 中实际字幕包含 “moving straight”，预测字幕包含 “turn right”，在这两种不同字幕预测下，轨迹有明显的区别，这既说明了此类场景难以从单帧图像估计轨迹，又说明了 CoVLA-Agent 中语言动作的一致性。
+
+为此，探讨当视觉语言模型生成的 caption 和真实 caption 不一致时，会如何影响轨迹预测的性能，如 ADE 和 FDE。
+
+- 计算出现在 ground truth 但预测中没有或者出现在预测但 ground truth 中没有的词的平均 ADE 和 FDE
+
+- 排除 stopwords，选取出现次数超过 10 次、且会导致最大 ADE 和 FDE 的前十高影响词汇
+
+- 当预测与真实出现不一致时，尤其是与车辆方向或加速度相关的词语（如 “减速”、“左转”、“弯道”、“转弯”）出错，会造成较大的 ADE 和 FDE。
+
+基于上述结果，认为由模型生成的 captions 导致预测轨迹表现差，主要是因为从单帧图像中推测驾驶意图是非常困难的。
+
+> stopwords（停用词）: 像 "the", "is", "at", "in" 等这些对语义影响不大的词
 
 ## Supplementary Material
 
