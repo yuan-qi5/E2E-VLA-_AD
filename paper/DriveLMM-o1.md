@@ -20,8 +20,10 @@
 
 ![dataset_comparision](./pictures/DriveLLM-o1_dataset_comparision.png)
 
-> LiDAR 点云 ：
+> LiDAR ：全称 Light Detection And Ranging（光探测与测距）
 >
+> 点云 ：由很多个激光扫描点组成的集合，表示三维空间中物体的表面形状。每个通常包含：位置、、强度值/反射率、事件戳、标签信息等。一个完整的扫描帧就是一幅稠密活稀疏的 3D 点的集合。
+> 
 > curriculum learning （课程学习）：一种模仿人类学习过程（先学简单的，再学难的）的机器学习策略，在训练模型时，不是把所有训练样本随机打乱训练，而是设计一个 “由易到难” 的学习顺序，让模型先掌握基础能力，再逐渐面对更复杂任务。
 >
 > beam search （束搜索）：一种常用于序列生成任务的搜索算法，与其值保留 “最优一条路径”，不如保留 “可能性前 k 高的路径”，以提升生成质量。
@@ -41,7 +43,13 @@
 
 - automated generation :
 
-- manual correction and verfication
+  - 使用 GPT-4o 自动生成初始推理步骤和答案
+ 
+  - 提供了一个设计好的提示，带有明确的指示和定义明确的输出格式以指导生成结构化推理链
+ 
+  - 生成的答案遵循逻辑上的渐进式推理过程，须依次描述观察结果、关键实体之间关系以及最终结论
+
+- manual correction and verfication ：人工筛选掉不合适的样本，对保留的样本进行进一步的优化推理步骤
 
 ### evaluation methodology 
 
@@ -53,6 +61,7 @@
 
 - 此外，对于所有选择题 (multiple choice question, MCQ)，也统计最终答案的准确率
 
+![DriveLLM-o1_benchmark](./pictures/DriveLLM-o1_benchmark.png)
 
 ## base model
 
@@ -76,7 +85,7 @@
 
 - 采用动态图像切片技术，将大图划分成小块输入 InternVL 
 
-### results and discussions
+### results  
 
 ![experiment_results](./pictures/DriveLLM-o1_experiment.png)
 
