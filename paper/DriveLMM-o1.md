@@ -20,14 +20,74 @@
 
 ![dataset_comparision](./pictures/DriveLLM-o1_dataset_comparision.png)
 
+> LiDAR 点云 ：
+>
+> curriculum learning （课程学习）：一种模仿人类学习过程（先学简单的，再学难的）的机器学习策略，在训练模型时，不是把所有训练样本随机打乱训练，而是设计一个 “由易到难” 的学习顺序，让模型先掌握基础能力，再逐渐面对更复杂任务。
+>
+> beam search （束搜索）：一种常用于序列生成任务的搜索算法，与其值保留 “最优一条路径”，不如保留 “可能性前 k 高的路径”，以提升生成质量。
 
-## benchmark 
+
+## Benchmark 
+
+### benchmark development
+
+- question set curation :
+
+  - 设计了一套包含 10 类问题的标准化问题模板
+
+  - 涵盖自动驾驶中感知、预测和规划三个核心任务
+
+  - 这些问题都需要逐步的逻辑推理才能得到正确答案，从而模拟自动驾驶系统实际需要做的决策步骤
+
+- automated generation :
+
+- manual correction and verfication
+
+### evaluation methodology 
+
+- 使用 GPT-4o 参考真实答案对推理过程打分
+
+- 使用结构化的评估提示词，包含详细的评分标准、预设的评分等级、标准化的 JSON 输出格式
+
+- 最终推理得分为所有指标评分的平均分
+
+- 此外，对于所有选择题 (multiple choice question, MCQ)，也统计最终答案的准确率
+
+
+## base model
+
+- input : 处理拼接后的 multiview images，使得模型既能同时处理不同视角图像，又避免了跨视图独立特征提取，提高计算效率
+  
+- fine-tune InternVL-8B (ViT + LLaMA-2，支持动态分辨率输入) ：冻结数据编码器和语言模型的大部分层，在 LLaMA 主干的注意力层中使用 LoRA(low-rank adaptation) 进行微调，具体来说，将可训练的低秩矩阵注入到自注意力机制中的 query、key、value 的投影中
+
+## Experiments
+
+### training dataset
+
+- 与 benchmark 构建方式一样，除了未经严格验证
+
+- 包含 1962 个驾驶场景，18507 个基于推理的 Q&A pairs
+
+- Q&A pairs 伴随超过 55,000 个推理步骤
+
+### experiment setup
+
+- 使用 LoRA 适配器(rank=16)进行一次 epoch 的有监督微调，冻结了视觉编码器和所有大语言模型层，使得仅 0.49% 的总参数可训练
+
+- 采用动态图像切片技术，将大图划分成小块输入 InternVL 
+
+### results and discussions
+
+![experiment_results](./pictures/DriveLLM-o1_experiment.png)
 
 
 
 
 
-![dataset_comparision](./pictures/DriveLLM-o1_dataset_comparision.png)
+
+
+
+
 
 
 
