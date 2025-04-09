@@ -43,21 +43,21 @@
 
 - 给定一组多视角图像，使用一个共享的 2D 主干网络提取多尺度二维特征 
 
-- 在多个视角之间聚合，并投影的 BEV 空间中，从而生成 BEV 特征，$f_bev$
+- 在多个视角之间聚合，并投影的 BEV 空间中，从而生成 BEV 特征， $f_{bev}$
 
-- 使用三种视觉查询模块来获得环境表示，global scene sampler $v_scene$, agent query_transformer $v_agent$, map query_transformer $v_map$
+- 使用三种视觉查询模块来获得环境表示，global scene sampler $v_{scene}$, agent query_transformer $v_{agent}$, map query_transformer $v_{map}$
 
-- 通过以视觉为中心的感知任务，包括三维检测、目标跟踪和图像分割来训练使其生成结构化环境 token , 即 $V_enc = {v_scene, v_agent, v_map}$
+- 通过以视觉为中心的感知任务，包括三维检测、目标跟踪和图像分割来训练使其生成结构化环境 token , 即 $V_{enc} = { v_{scene}, v_{agent}, v_{map} }$
 
 > BEV(Bird's Eye View) : 即鸟瞰图视角，将摄像头图像中的特征统一投影到地面坐标系
 
 ### hierarchical vision-language alignment 
 
-- 对从 3D 感知模块中提取出的视觉 token，引入三个 token-specific projectores ${\Phi_scene, \Phi_agent, \Phi_map }$
+- 对从 3D 感知模块中提取出的视觉 token，引入三个 token-specific projectores ${\Phi_{scene}, \Phi_{agent}, \Phi_{map} }$
 
-- 训练时，$v_agent$ 会与对应的真实语言描述（包含二位外观描述、三维空间位置信息）进行匹配，
+- 训练时， $v_{agent}$ 会与对应的真实语言描述（包含二位外观描述、三维空间位置信息）进行匹配，
 
-- $v_scene$、$v_map$，进行 sample-wise 描述对齐，分别编码全局空间上下文和静态结构属性
+-  $v_{scene}$、 $v_{map}$，进行 sample-wise 描述对齐，分别编码全局空间上下文和静态结构属性
 
 ### driving instruction tuning 
 
