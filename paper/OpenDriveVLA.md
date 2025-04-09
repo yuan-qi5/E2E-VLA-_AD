@@ -154,7 +154,7 @@
 
 - 自我状态信息在轨迹预测中起着重要作用
 
-- 由于数据存在分布不平衡问题，大量场景都是维持当前状态，模型因此过渡依赖 ego-state history，导致模型在预测时倾向于保守决策
+- 由于数据存在分布不平衡问题，大量场景都是维持当前状态，模型因此过度依赖 ego-state history，导致模型在预测时倾向于保守决策
 
 ![OpenDriveVLA_ablation](./pictures/%20OpenDriveVLA_ablation.png)
 
