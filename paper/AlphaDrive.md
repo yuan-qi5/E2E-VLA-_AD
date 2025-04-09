@@ -119,7 +119,7 @@ evaluation :
 >
 > CIDEr (Consensus-based Image Description Evaluation) : 用于评估模型生成的图像描述 (caption) 与多个参考描述之间的相似度，尤其强调 “与多数人类描述一致” 
 >    
-> METEOR (Metric for Evaluation of Translation with Explicit ORdering) :
+> METEOR (Metric for Evaluation of Translation with Explicit ORdering) : 结合了语义匹配、顺序惩罚和召回导向的评估指标，比 BLUE 更贴近人类感知
 
 ### main results
  
