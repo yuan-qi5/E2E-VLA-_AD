@@ -2,13 +2,87 @@
 
 ## Introduction
 
+现有 end-to-end 驾驶方法面临关键挑战 :
 
+- 长尾场景中泛化能力不足
+
+- 难以理解复杂场景中的高级语义
+
+- 驾驶推理的不灵活
+
+现有 end-to-end 自动驾驶的设计策略 ：
+
+![end-to-end_autonomous_driving_paradigm](./pictures/end-to-end_autonomous_driving_paradigm.png)
+
+现有 VLMs 的自动驾驶中的挑战 :
+
+- 当前 VLMs 主要针对静态 2D image-language 任务优化，在 3D 场景中空间推理能力不足
+
+- 模型的幻觉输出，不正确或过度自信的描述 
+
+> open-loop planning（开环规划）: 一种不依赖执行反馈的规划方式，即做出计划或决策后，不再根据环境的变化或过去的执行结果来调整决策
+>
+> in-context learning (ICL)：大模型在不更新参数的情况下，仅通过观察提示中的几个示例就学会了如何完成任务的能力   
+>  
 
 ## Model
 
+### architecture
 
+- pre-trained vision encoder : 从多视角图像中提取环境表示
 
+- cross-modal learning : 将视觉标记对齐到文本域
 
+- driving instruction tuning : 通过 agent-ego-environment 交互建模
+
+- end-to-end 训练去预测车辆轨迹
+
+![OpenDriveVLA_architecture](./pictures/OpenDriveVLA_architecture.png)
+
+### 3D visual environmental perception
+
+- 给定一组多视角图像，使用一个共享的 2D 主干网络提取多尺度二维特征 
+
+- 在多个视角之间聚合，并投影的 BEV 空间中，从而生成 BEV 特征，$f_bev$
+
+- 使用三种视觉查询模块来获得环境表示，global scene sampler $v_scene$, agent query_transformer $v_agent$, map query_transformer $v_map$
+
+- 通过以视觉为中心的感知任务，包括三维检测、目标跟踪和图像分割来训练使其生成结构化环境 token , 即 $V_enc = {v_scene, v_agent, v_map}$
+
+> BEV(Bird's Eye View) : 即鸟瞰图视角，将摄像头图像中的特征统一投影到地面坐标系
+
+### hierarchical vision-language alignment 
+
+- 对从 3D 感知模块中提取出的视觉 token，引入三个 token-specific projectores ${\Phi_scene, \Phi_agent, \Phi_map }$
+
+- 训练时，$v_agent$ 会与对应的真实语言描述（包含二位外观描述、三维空间位置信息）进行匹配，
+
+- $v_scene$、$v_map$，进行 sample-wise 描述对齐，分别编码全局空间上下文和静态结构属性
+
+### driving instruction tuning 
+
+- 通过驾驶指令微调将驾驶知识提炼到模型中，不采用显示 CoT，以实现推理速度和推理效率之间的权衡
+
+- 使用 driving instruction QA dataset 进行微调，这些数据集涵盖了一系列驾驶相关的推理
+
+### agent environment ego interaction
+
+- 引入一个 conditional agent motion forecasting task 代理学习去解决现有大模型在 2D vision-language 上训练造成的偏差
+
+- 在已知 scene、map tokens，与 ego vehicle state $S_ego$条件下，让 LLM 根据每个 agent 的投影视觉特征去预测未来的运动轨迹
+
+- agent 的未来运动用一系列 waypoints 表示
+
+> waypoint （航路点/路径点）: 一系列位置坐标，用于描述一个运动目标在未来某段时间内预期要经过的位置序列 
+
+### end-to-end trajectory planning
+
+- 先将路径点用 tokenizer 转换为离散的文本 token 序列
+
+- 然后再将轨迹生成任务转化为一个因果序列的预测任务
+
+![traj_generate](./pictures/%20traj_generate.png) 
+  
 ## Experiments
 
 ### train data 
