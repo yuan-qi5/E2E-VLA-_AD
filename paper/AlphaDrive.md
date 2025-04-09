@@ -27,7 +27,7 @@
 
 #### What are AlphaDrive's contributions ?
 
-- four GRPO rewards for planning : planning accuracy reward, action-weighted reward, planing diversity reward, planning format reward.
+- four GRPO rewards for planning : planning accuracy reward, action-weighted reward, planning diversity reward, planning format reward.
 
 - a two-stage reasoning training strategy based on knowledge distillation, integrating SFT and RL.
 
