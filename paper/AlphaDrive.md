@@ -98,30 +98,44 @@ evaluation :
 
 - planning reasoning : 计算生成的规划推理过程与数据集中标注的推理过程之间的相似度，使用 BLEU-4，CIDEr 和 METEOR  
 
-> BLEU-4 (Bilingual Evaluation Understudy) : 
+> BLEU (Bilingual Evaluation Understudy，双语自动评价指标) : 最初用于评估机器翻译质量，现在广泛用于 “文本生成” 任务的自动评分。
 >
-> CIDEr (Consensus-based Image Description Evaluation) :
+>    - 通过计算模型生成文本和真实参考文本之间的 n-gram（连续的 n 个词） 重叠率来打分
 >
+>    - BLEU-4 就是在指标中使用了 1-gram 到 4-gram 的版本，是最常用的变体 
+>
+> CIDEr (Consensus-based Image Description Evaluation) : 用于评估模型生成的图像描述 (caption) 与多个参考描述之间的相似度，尤其强调 “与多数人类描述一致” 
+>    
 > METEOR (Metric for Evaluation of Translation with Explicit ORdering) :
 
 ### main results
  
+![AlphaDrive_planning_performance](./pictures/AlphaDrive_planning_performance.png)
 
 ### ablation study
 
 planning rewards :
 
+![AlphaDrive_planning_ablation](./pictures/AlphaDrive_planning_ablation.png)
 
 reasoning training strategies :
 
+- 推理对于复杂行动尤其重要，如 acceleration，deceleration 等
+
+- 此外，与使用 SFT 训练模型相比，仅使用 RL 训练的模型在推理方面表现更差，我们认为较小模型的参数大小有限，导致感知和推理能力不足
+
+- 将 SFT 作为 warm-up phase，并使用知识蒸馏从更大的模型去学习推理过程可解决整个问题
+
 amount of training data
 
+- 数据量减少，SFT 比 RL 受到的影响会更大
 
+![AlphaDrive_data_amount_ablation](./pictures/AlphaDrive_data_amount_ablation.png)
 
+emergence of multimodal planning capability
 
+- 在复杂场景下，AlphaDrive 可以生成多个可行的解决方案，通过于下游行动模型继承，再从多个选项中动态选择最优解决方案
 
-
-
-
+![AlphaDrive_emergence](./pictures/AlphaDrive_emergence.png)
 
 
