@@ -22,7 +22,7 @@
 
     
 [3]:https://github.com/yuan-qi5/VLA/blob/main/paper/CoVLA.md#data-sampling
-[2]:https://github.com/yuan-qi5/VLA/blob/main/paper/CoVLA.md#data-sampling
+[2]:https://github.com/yuan-qi5/VLA/blob/main/paper/CoVLA.md#data-analysis
 [1]:https://github.com/yuan-qi5/VLA/blob/main/paper/OpenDriveVLA.md#main-results
 [4]:https://github.com/yuan-qi5/VLA/blob/main/paper/OpenDriveVLA.md#model
 [5]:https://github.com/yuan-qi5/VLA/blob/main/paper/DriveLMM-o1.md#benchmark 
