@@ -1,7 +1,20 @@
 # AlphaDrive: Unleashing the Power of VLMs in Autonomous  Driving via Reinforcement Learning and Reasoning
 
+## Induction 
 
+最近研究将 VLMs 应用到自动驾驶方向 ：
 
+- 利用 VLMs 理解驾驶场景
+
+- 利用 VLMs 进行规划，将 VLMs 看作端到端系统处理输入直接预测轨迹，由于 VLMs 在语言空间建模，本质上不适合精确数值计算
+
+针对 VLMs 不适合精确数值计算的解决方法 ：
+
+- 进行语义层面规划，如：减速并右转
+
+存在问题 ：
+
+- 缺乏对训练方法的进一步探索，仅依赖 SFT，忽略了其他训练策略影响
 
 
 ## Model 
