@@ -54,7 +54,7 @@ $$Planning  Quality Reward = Planning Accuracy Reward \times Action Weighted Rew
 
 - planning diversity reward : 观察到早期会生成多个解，后期逐渐收敛到相同解，为鼓励多样性，惩罚输出都相同情形，但最高不超过 20%
 
-- planning format reward : 正则化输出格式来更容易提取推理过程和最终答案，具体来说，reasoning procee 封装在 <think>/<think> 中，planning result 封装在 <answer>/<answer> 中。若不符合此格式，设为 0。
+- planning format reward : 正则化输出格式来更容易提取推理过程和最终答案，具体来说，reasoning procee 封装在 `<think>/<think>` 中，planning result 封装在 `<answer>/<answer>` 中。若不符合此格式，设为 0。 
 
 ### reasoning : distillation from large models 
 
