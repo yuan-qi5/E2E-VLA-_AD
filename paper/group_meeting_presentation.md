@@ -1,4 +1,4 @@
-# 2025/04/09
+# 2025/04/10
 
 个人感受 (CoVLA, OpenDriveVLA, AlphaDrive, DriveLMM-o1) ：
 
