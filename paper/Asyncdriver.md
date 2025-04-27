@@ -41,10 +41,16 @@ currrent motion planning framework :
 >
 > inference frequency（推理频率）：指 LLM 被调用进行推理的次数或频率
 >
-> model predictive control（模型预测控制）：一种基于模型的最优控制方法，核心思想维：每一个控制时刻，利用系统动力学模型，在**未来一个时间窗口内预测系统行为**，通过**优化控制序列**使未来轨迹尽可能好（如偏离最小、控制能耗最小），只执行第一个控制动作，下一次再重新预测。
+> model predictive control（模型预测控制）：一种基于模型的最优控制方法，核心思想：每一个控制时刻，利用系统动力学模型，在**未来一个时间窗口内预测系统行为**，通过**优化控制序列**使未来轨迹尽可能好（如偏离最小、控制能耗最小），只执行第一个控制动作，下一次再重新预测。
 >   > intuition : MPC = 预测未来 + 求最优方案 + 实时滚动更新
 
 ## Data
+
+nnPlan dataset : 第一个大规模自动驾驶规划基准，由 1200 hours 真实驾驶数据组成。
+
+从 nnPlan Train and Val 中开发 pre-training and fine-tuning dataset ，集中于 14 个官方挑战性场景。
+
+### Pre-training Data Generation
 
 ## Methodology
 
