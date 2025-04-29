@@ -50,12 +50,63 @@ nnPlan dataset : 第一个大规模自动驾驶规划基准，由 1200 hours 真
 
 从 nnPlan Train and Val 中开发 pre-training and fine-tuning dataset ，集中于 14 个官方挑战性场景。
 
+目的是为了增强 LLM 对自动驾驶中指令的理解能力。
+
 ### Pre-training Data Generation
+
+- planning-QA
+  
+   - 由 rule-based 途径生成，为增强 LLM 对 waypoint、high-level instructions、control 间关系的理解。
+
+   - 包含六种问题类型，每一种都侧重于在 waypoint、high-level instructions、control 的转换
+
+- reasoning-1K
+
+   - 由 GPT-4 生成的 1000 条数据，除了包含答案外还包含基于场景的推理与解释
+
+### Fine-tuning Data Generation
+
+- 为了进一步增强多模态理解和对齐，构建了一个基于 10,000 场景的微调数据集，每 8s 捕获一帧，得到了包含 180,000 帧的训练集和 20,000 帧的验证集，每一帧都包含 vectorized map data 和 linguistic prompts
+
+   - 训练集和测试集中的场景类型分布与整个 nuPlan train-val dataset 分布保持一致 
+
+-  对于 vectorized scene information，包含自车本身的信息，在 20 帧历史轨迹中 20 个周围智能体信息和椅子车为中心的全球地图数据
+
+-  对于 LLM prompt ，由 system prompt 和 系列 routing instructions 组成。
+
+   - 关于 routing instructions，使用基于规则的方法将路径点（pathway）转化为一系列带有距离信息的指令。训练集使用自车在未来 8 秒内的真实轨迹作为生成路径指令的基础，仿真时根据当前场景观察，通过人工设定方法，在规定的最大路径长度范围内，找到一条参考路径来生成路径指令。
 
 ## Methodology
 
+AsyncDriver (asynchronous LLM-enhanced closed-loop framework): 由两部分组成 ： 
+
+- Scene-Associated Instruction Feature Extraction Module
+
+- Adaptive Injection Block
+
+![asyncdriver_framework](./pictures/asyncdriver_framework.png)
+
+### Scene-Associated Instruction Feature Extraction Module
+
+**Multi-modal Input** : 
+
+- 在每个 planning iteration，vectorized scene information 从模拟环境中获得。其中包括 ego 和 other agents 的历史轨迹和状态信息以及全球地图数据。
+
+- real-time planner 的矢量化场景信息以相同方式提供，所有矢量数据都是相对于 ego 位置的。
+
+- 随后通过 vector map encoder 和 map adapter 处理，map embeddings 和 language embeddings 一起送到 Llama2-13B 以得到 hidden features。
+
+**Alignment Assistance Module**
+
+### Adaptive Injection Block
+
+ 
+
+### Asynchronous Inference 
 
 
+
+### Training Details
 
 ## Experiment
 
