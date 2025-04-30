@@ -7,7 +7,7 @@ my learning notes of VLA <br>
   - [DriveLMM-o1][6] : DriveLMM-o1: A Step-by-Step Reasoning Dataset and Large Multimodal Model for Driving Scenario Understanding (25/03 arxiv)
   - [Asyncdriver][7] : Asynchronous Large Language Model Enhanced Planner for Autonomous Driving (24/06 arxiv)
   - [LanguageMPC][8] : Large Language Models As Decision Makers For Autonomous Driving (23/10 arxiv)
-  - 
+  - [GameFormer][9] : Game-theoretic Modeling and Learning of Transformer-based Interactive Prediction and Planning for Autonomous Driving
 
 
 
@@ -22,7 +22,7 @@ my learning notes of VLA <br>
 [6]:https://github.com/yuan-qi5/VLA/blob/main/paper/DriveLMM-o1.md
 [7]:https://github.com/yuan-qi5/VLA/blob/main/paper/Asyncdriver.md
 [8]:https://github.com/yuan-qi5/VLA/blob/main/paper/LanguageMPC.md
-
+[9]:https://github.com/yuan-qi5/VLA/blob/main/paper/GameFormer.md
 
 
 
