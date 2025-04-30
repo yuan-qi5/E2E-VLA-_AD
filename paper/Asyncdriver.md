@@ -98,9 +98,19 @@ AsyncDriver (asynchronous LLM-enhanced closed-loop framework): 由两部分组�
 
 **Alignment Assistance Module**
 
+- 确定自动驾驶过程中多任务预测的五个关键场景，由 5 个独立的 2 层 MLP 预测头预测
+
+- ego vehicle : 使用回归任务估计车辆在 X、Y 方向上的速度和加速度
+
+- map information : 执行分类任务用于识别当前车道左右两侧是否有相邻车道和判断当前车道关联的交通灯状态
+
+- towards future navigation : 进行分类任务，识别是否需要在未来轨迹中进行换道 (lane change)，和未来的速度决策，即加速、减速或保持当前速度三种选项。
+
+- 注意，对齐辅助模块尽在训练阶段用于帮助多模态特征对齐，推理阶段时不使用
+
 ### Adaptive Injection Block
 
- 
+- 采用类似 Gameformer 解码器结构作为基础的 
 
 ### Asynchronous Inference 
 
