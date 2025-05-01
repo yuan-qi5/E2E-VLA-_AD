@@ -127,10 +127,26 @@ AsyncDriver (asynchronous LLM-enhanced closed-loop framework): 由两部分组�
 
 ### Training Details
 
+- pre-training stage :
+
+   - 使用 Reasoning1K 数据集，并结合从 Planning-QA 随机选取的 1500 个样本，采用 LoRA 微调
+ 
+   - 使得 LLM 从一个通用型大语言模型转变为专门针对自动驾驶任务优化的模型
+
+- fine-tuning stage : 
+
+   - VectorMap encoder and decoder 架构保持不变，加载在同一数据集上预训练好的实施规划器的权重，以提升训练稳定性
+ 
+   - 微调时损失由两部分组成：对齐辅助损失（Alignment Assistance Loss）和规划损失（Planning Loss）。对齐辅助损失划分为五个部分，使用 L1 损失预测自车的速度与加速度；使用交叉熵损失预测速度策略； $\tilde{x}_{dec}$
+ 
+![async_ft_loss](async_ft_loss.png) 
+
+
 ## Experiment
 
+$$L_1(\tilde{x}_{val})$$
 
-
+\( L_{align} = L_1(\tilde{x}_{val}, x_{va} ) \)
 
 
 
