@@ -60,7 +60,31 @@
 
 ### Learning Process
 
-提出了一种学习过程，该过程能建模不同推理层次之间的相互影响
+提出了一种学习过程，该过程能建模不同推理层次之间的相互影响，基于 Level-k Reasoning
+
+- 采用模仿损失（imitation loss）作为主要损失函数去约束 agent 行为，可以将该损失视为对交通法规、驾驶风格等因素的代理
+
+- agent 的未来行为被建模为一个高斯混合模型，每个模态 m 在时间步 t 用一个二维高斯分布表示，参数为 $\mu_{tm}$ 协方差为 $\sigma_{tm}$
+
+- 模仿损失计算方式为，在每个时间步，选择预测最接近真实轨迹的模态 m*，计算其负似然对数损失
+
+![GMM_loss](./pictures/GMM_loss.png)
+
+负似然对数损失（negative log-likelihood loss）定义如下
+
+![negative_log-likelihood_loss](./pictures/negative_log-likelihood.png)
+
+其中 $d_{x} = s_{x} - \mu_{x}$ and $d_{y} = s_{y} - \mu_{y}$，$(s_{x}, s_{y})$ 是真实位置，$p_{m*} 是选择部分的概率$，实际训练中使用交叉熵损失。
+
+- 对 Level-k agent $A_{i}^{k}$，设计一个辅助损失函数，主要考虑与其他车辆的交互，鼓励 agent 避免与其他 level-(k-1) agent 的潜在未来轨迹发生碰撞
+
+- 具体来说，在交互损失中引入排斥势场，以防止 agent 的未来轨迹过于接近其他 level-(k-1) agent 的潜在轨迹，为了确保排斥力只在接近时生效，引入了一个安全距离阈值，只在距离小于该阈值的交互时才施加损失
+
+![gameformer_inter_loss](./pictures/gameformer_inter_loss.png)
+
+- 最终对 level-k agent i 的损失是 imitation 和 interaction loss 的加权
+
+![gameformer_loss](./pictures/gameformer_loss.png)
 
 
 
