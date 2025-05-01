@@ -137,16 +137,18 @@ AsyncDriver (asynchronous LLM-enhanced closed-loop framework): 由两部分组�
 
    - VectorMap encoder and decoder 架构保持不变，加载在同一数据集上预训练好的实施规划器的权重，以提升训练稳定性
  
-   - 微调时损失由两部分组成：对齐辅助损失（Alignment Assistance Loss）和规划损失（Planning Loss）。对齐辅助损失划分为五个部分，使用 L1 损失预测自车的速度与加速度；使用交叉熵损失预测速度策略； $\tilde{x}_{dec}$
+   - 微调时损失由两部分组成：对齐辅助损失（Alignment Assistance Loss）和规划损失（Planning Loss）。
+   
+   - 对齐辅助损失划分为五个部分，使用 L1 损失预测自车的速度与加速度 $\tilde{x}_{va} \in R^4$；使用交叉熵损失预测速度策略 $\tilde{x} _{dec} \in R^3$；对交通灯状态进行预测 $\tilde{x} _{traf} \in \mathbb{R}^4 $；使用二元交叉熵损失做相邻车道存在性预测，输出 $\tilde{x} _{adj} \in R^2$；做换道预测，输出 $\tilde{x} _{chg} \in R$
  
-![async_ft_loss](async_ft_loss.png) 
+![async_ft_loss](./pictures/async_ft_loss.png) 
 
+   - 规划损失由两部分组成。**model prediction loss**: 邻居车辆的轨迹预测被表示为 m 种不同的模式，并通过高斯混合模型（GMM）来建模，对每个模式，在任意时间点 t，这个模式的轨迹由均值 $\mu_t$ 和协方差 $\sigma_t$ 来描述，通过与真实轨迹对齐的方式，选出最优模式 m*，并通过最小负对数似然去优化；**ego trajectory prediction loss**: 模型预测自车未来的轨迹点，并使用 L1 损失进行优化
+
+![async_planning_loss](./pictures/async_planning_loss.png)
 
 ## Experiment
 
-$$L_1(\tilde{x}_{val})$$
-
-\( L_{align} = L_1(\tilde{x}_{val}, x_{va} ) \)
-
+ 
 
 
