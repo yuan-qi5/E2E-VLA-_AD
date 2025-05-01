@@ -54,7 +54,7 @@
 
   - 使用一个多头交叉注意力 Transformer，将来自 level-(k-1) layer 的 query content features $Z_{i}^{L_{k-1}}$ 和 agent future features $A_{mf}^{L_{k-1}}$ 相加作为 query，将更新的场景上下文 $C_{L_{k}}^{i}$ 作为 key 和 value。采用 mask 策略，防止 agent 查看自己上一层的轨迹预测结果（来避免 “自我强化”，实现 “响应他人”）
 
-  - 最后，从 cross-attention 模块中得到的 query content tensor $Z_{i}^{L_{k]}$，分别通过两个 MLP，解码为该 agent 的 GMM 参数和模态分数。
+  - 最后，从 cross-attention 模块中得到的 query content tensor  $Z_{i}^{L_{k]}$ ，分别通过两个 MLP，解码为该 agent 的 GMM 参数和模态分数。
 
   - 注意在 level-k 解码阶段对所有 agent 使用同一个解码器参数来生成每个 agent 的多模态轨迹，在交互解码的最后一层，可以得到自动驾驶车和周围车辆的多模态轨迹 $G_{L_{k}}$，以及对应的模态分数 $P_{L_{k}}$
 
