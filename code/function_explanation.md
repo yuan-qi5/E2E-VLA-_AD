@@ -19,7 +19,7 @@
 
 `.unsqueeze(dim)` : 在指定的位置 `dim` 上增加一个维度（长度为 1）
 
-- eg: 原张量 shape (4,5) : .unsqueeze(0) --> (1,4,5)  .unsqueeze(2) --> (4,1,5)
+- eg: 原张量 shape (4,5) : .unsqueeze(0) --> (1,4,5)  .unsqueeze(2) --> (4,5,1)
 
 - pytorch 中，`tensor[:,None]` 是 `.unsqueeze()` 的一种快捷方式，用来在指定位置增加一个新的维度
 
@@ -29,7 +29,7 @@
 
 `squeeze(dim)` : 在指定位置上去掉长度为 1 的维度，若不为 1，不操作
 
-squeeze() : 去掉所有维度 = 1 的维度
+`squeeze()` : 去掉所有维度 = 1 的维度
 
 常见场景 ： 
 
@@ -45,7 +45,7 @@ squeeze() : 去掉所有维度 = 1 的维度
 
 ### 4. 复制数据方法
 
-`.expand()` : 不复制数据的情况下（共享内存），把一个小张量 “扩展” 成更大的张量视图。
+`.expand(size)` : 不复制数据的情况下（共享内存），把一个小张量 “扩展” 成更大的张量视图。
 
 - `.expand()` 常和 `.unsqueeze()` 一起用，因为 `.expand()` 只能在维度 = 1 的地方扩展
 
@@ -88,13 +88,19 @@ squeeze() : 去掉所有维度 = 1 的维度
 
 - 特点 ：梯度流更稳定，训练深层 Transformer 效果好
 
+## 2025/05/05
 
+### 7. nn.TransformerEncoder vs. nn.TransformerEncoderLayer
 
+`nn.TransformerEncoderLayer` : 一个单独的 “编码器层”，即单层 Encoder Block，内部结构有 multi-head self-attention 子层和 feed forward 子层
 
+- 结构流程 ： x --> [Multi-Head Attention] --> Dropout --> Add + LayerNorm --> [Feed Forward] --> Dropout --> Add + LayerNorm 
 
+`nn.TransformerEncoder` : 一个完整的编码器模块，由多个 `TransformerEncoderLayer` 堆叠而成
 
+- nn.TransformerEncoder(encoder_layer # 一层的定义, num_layers # 堆叠几层, norm=None # 最终的 LayerNorm)   复制 encoder_layer n 次，但权重彼此独立。
 
-
+### 8. torch.cat vs torch.stack
 
 
 
