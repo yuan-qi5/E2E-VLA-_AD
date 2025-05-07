@@ -103,4 +103,38 @@
 ### 8. torch.cat vs torch.stack
 
 
+## 2025/05/07 
+
+### 9. torch.einsum(equation, *operands) 
+
+`torch.einsum(equation, *operands)` : 基于爱因斯坦求和约定（Einstein summation convention）的通用张量运算接口，用一个简单的字符串公式同时表达多种张量操作
+
+**Note**: 在处理大型张量运算时不如专门优化过的函数高效
+
+**equation写法** : 指定张量操作的具体方式，由**输入标记**和**输出标记**组成，用 "->" 分割，表示维度的字符只能是 26 个英文字母 'a' - 'z'
+
+- 输入标记描述了输入张量的维度和形状，输出标记描述了输出张量的维度和形状，每个标记由一个或多个字母，用逗号分隔。equation 中字符也可以理解为索引，即输出张量的某个位置的值，是怎么从输入张量中得到的。
+
+- 自由索引（free indices）和求和索引（summation indices）: 自由索引指出现在箭头右边的索引；求和索引指**只**出现在箭头左边的索引，表示中间计算结果需要在这个维度上求和之后才能得到输出。
+
+- 求和准则：
+
+  - rule1 : equation 箭头左边，在不同输入之间重复出现的索引，表示把输入张量沿着该维度做乘法操作
+ 
+  - rule2 : 只出现在 equation 箭头左边的索引，表示中间计算结果需要在这个维度上求和，即求和索引
+ 
+  - rule3 : equation 箭头右边索引顺序是任意的，
+
+- 特殊规则 ：
+
+  - special_rule1 : equation 可不写箭头内右边部分，输出张量的维度会根据默认规则推导，即把输入中只出现一次的索引取出来，然后按字母表顺序排列
+ 
+  - special_rule2 : equation 中支持 "..." 省略号，表示不关心的索引 
+
+> 参考 blog : https://blog.csdn.net/bj_zhb/article/details/136869289，吐槽下 gpt o4-mini 和 gemini advanced 2.5 pro，解释的快看到自闭 qwq
+
+ 
+
+
+
 
