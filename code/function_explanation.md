@@ -100,7 +100,19 @@
 
 - nn.TransformerEncoder(encoder_layer # 一层的定义, num_layers # 堆叠几层, norm=None # 最终的 LayerNorm)   复制 encoder_layer n 次，但权重彼此独立。
 
-### 8. torch.cat vs torch.stack
+### 8. torch.nn.functional.unfold() : 用于将输入张量的滑动局部块 (patches) 提取出来，然后展平成二维张量形式
+
+``` python
+torch.nn.functional.unfold(
+  input : Tensor 
+  kernel_size,
+  dilation=1,
+  padding=0,
+  stride=1
+) -> Tensor  N * (kernel_size * kernel_size) * M
+```
+
+### 9. torch.cat vs torch.stack
 
 
 ## 2025/05/07 
@@ -111,7 +123,7 @@
 
 **Note**: 在处理大型张量运算时不如专门优化过的函数高效
 
-**equation写法** : 指定张量操作的具体方式，由**输入标记**和**输出标记**组成，用 "->" 分割，表示维度的字符只能是 26 个英文字母 'a' - 'z'
+**equation写法** : 指定张量操作的具体方式，由**输入标记**和**输出标记**组成，用 "->" 分隔，表示维度的字符只能是 26 个英文字母 'a' - 'z'
 
 - 输入标记描述了输入张量的维度和形状，输出标记描述了输出张量的维度和形状，每个标记由一个或多个字母，用逗号分隔。equation 中字符也可以理解为索引，即输出张量的某个位置的值，是怎么从输入张量中得到的。
 
@@ -130,6 +142,26 @@
   - special_rule1 : equation 可不写箭头内右边部分，输出张量的维度会根据默认规则推导，即把输入中只出现一次的索引取出来，然后按字母表顺序排列
  
   - special_rule2 : equation 中支持 "..." 省略号，表示不关心的索引 
+
+Example : 用 torch.einsum() 实现卷积 
+
+``` python
+import torch
+input = torch.arange(1,17).float().view(1, 1, 4, 4) # B * C * H * W
+kernal = torch.tensor([[1.0, 0.0],[0.0, -1.0]]).view(1 , 1, 2, 2)
+
+unfolded = torch.nn.functional.unfold(input, kernel_size=(2,2)) # 1 * 4 * 9 
+output = torch.einsum('oc,bcn->bon', kernal.view(1,4), unfolded)
+
+output_H = input.shape[2] - kernel.shape[2] + 1
+output_W = input.shape[3] - kernel.shape[3] + 1
+output = output.view(1, 1, output_H, output_W)
+
+print(output)
+``` 
+
+
+更多使用示列见参考 blog。
 
 > 参考 blog : https://blog.csdn.net/bj_zhb/article/details/136869289，吐槽下 gpt o4-mini 和 gemini advanced 2.5 pro，解释的快看到自闭 qwq
 
