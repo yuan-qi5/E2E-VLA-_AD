@@ -8,8 +8,9 @@ my learning notes of VLA <br>
   - [Asyncdriver][7] : Asynchronous Large Language Model Enhanced Planner for Autonomous Driving (24/06 arxiv ECCV)
   - [LanguageMPC][8] : Large Language Models As Decision Makers For Autonomous Driving (23/10 arxiv )
   - [GameFormer][9] : Game-theoretic Modeling and Learning of Transformer-based Interactive Prediction and Planning for Autonomous Driving (23/03 arxiv ICCV)
-
-
+  - [LightEMMA][10] : Lightweight End-to-End Multimodal  Model for Autonomous Driving
+  - [nuPlan][11] : A closed-loop ML-based planning benchmark for autonomous vehicles
+  - [nuScenes][12] : A multimodal dataset for autonomous driving
 
 - [code][2]
 
@@ -23,7 +24,9 @@ my learning notes of VLA <br>
 [7]:https://github.com/yuan-qi5/VLA/blob/main/paper/Asyncdriver.md
 [8]:https://github.com/yuan-qi5/VLA/blob/main/paper/LanguageMPC.md
 [9]:https://github.com/yuan-qi5/VLA/blob/main/paper/GameFormer.md
-
+[10]:https://github.com/yuan-qi5/VLA/blob/main/paper/LightEMMA.md
+[11]:https://github.com/yuan-qi5/VLA/blob/main/paper/nuPlan.md
+[12]:https://github.com/yuan-qi5/VLA/blob/main/paper/nuScenes.md
 
 
 
