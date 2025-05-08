@@ -117,7 +117,7 @@ torch.nn.functional.unfold(
 
 ## 2025/05/07 
 
-### 9. torch.einsum(equation, *operands) 
+### 10. torch.einsum(equation, *operands) 
 
 `torch.einsum(equation, *operands)` : 基于爱因斯坦求和约定（Einstein summation convention）的通用张量运算接口，用一个简单的字符串公式同时表达多种张量操作
 
@@ -165,7 +165,13 @@ print(output)
 
 > 参考 blog : https://blog.csdn.net/bj_zhb/article/details/136869289，吐槽下 gpt o4-mini 和 gemini advanced 2.5 pro，解释的快看到自闭 qwq
 
- 
+## 2025/05/08
+
+### 11. torch.repeat_interleave() vs. tensor.repeat()
+
+`torch.repeat_interleave(input:tensor, repeats: Union[int, Tensor], dim:int,)` : 对张量元素沿指定维度进行重复插值，将每个元素 “拉伸” 成多个副本，元素级别
+
+`tensor.repeat(size)` : 整体进行复制，注意 $size_dim \geq tensor_dim$，若 size_dim > tensor_dim，默认在最左侧进行平铺  
 
 
 
