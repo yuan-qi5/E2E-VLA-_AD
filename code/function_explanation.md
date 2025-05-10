@@ -174,5 +174,44 @@ print(output)
 `tensor.repeat(size)` : 整体进行复制，注意 $size_dim \geq tensor_dim$，若 size_dim > tensor_dim，默认在最左侧进行平铺  
 
 
+## 2025/05/10
+
+### 12. torch.multinomial() : 根据概率分布进行采样
+
+``` python
+torch.multinoimal(
+  input,  # 输入的张量
+  num_sample # 每个分布要抽取的样本数量
+)
+```
+输入为矩阵时，把每一行理解为一个分布（不要求归一化），但要求非负
+
+### 13. optimizer.zero_grad(set_to_none = False) set_to_none 参数
+
+Pytorch 官方建议使用 `set_to_none = True` : 大多数情况下两者无明显差别，但使用 `set_to_none = True` 将梯度设置为 `None` 而不是一个零张量
+
+- 稍微减少内存占用，带来微小性能提升
+
+- 避免不必要操作（如优化器特定步骤或自定义操作等）以及更明确的梯度状态
+
+### 14. print(loss.item()) 中 .item() 作用 ：
+
+- 从一个只包含单个元素的 Pytorch 张量中提取除对应的标准 Python 数字
+
+- 避免保留计算图，减少内存消耗
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
