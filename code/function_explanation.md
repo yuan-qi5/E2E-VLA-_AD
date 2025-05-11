@@ -200,6 +200,9 @@ Pytorch 官方建议使用 `set_to_none = True` : 大多数情况下两者无明
 
 - 避免保留计算图，减少内存消耗
 
+### 15. transformers.utils.ModelOutput
+
+`ModelOutput` : 规范模型输出的格式，将输出组织成类似字典的数据类
 
 
 
