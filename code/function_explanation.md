@@ -308,6 +308,60 @@ default(optional) : 若指定的属性 name 在 object 中不存在，getattr() 
 
 `torch.ne()` 与 `!=` 等价。
 
+## 2025/05/19
+
+### 22. field()
+
+`field()` 是 Python 中 `dataclassed` 模块中的一个函数，用于自定义数据类中字段的行为，以实现更精细的控制。
+
+主要用途 ： 
+
+- 处理可变默认值，避免**可变对象**的所有实例共享同一对象 ：通过参数 `default_factory` 为可变对象提供一个无参数函数，每次创建类实例时调用该函数生成默认值
+
+- 控制初始化行为 ：`default` 默认值，`init` `repr` 是否包含在 `__init__` `__repr__` 中
+
+- 存储元数据 ：`metadata`
+
+### 23. slow tokenizer vs. fast tokenizer
+
+Hugging Face `transformers` 库通常提供两种类型的分词器实现 ：
+
+- 基于 Python 的分词器（slow tokenizer）: 早期完全用 Python 实现的分词器，对于大规模数据集其处理速度较慢
+
+- 快速分词器（Fast tokenizer）: 使用 Rust 重新实现的分词器，通过 `tokenizers` 库提供，追求更快的性能
+
+### 24. streaming mode （流式模式）
+
+**streaming mode** : 一种**按需处理**数据的机制，适用于处理非常大、无法一次性完全加载到内存中的数据集或数据流。通常为逐样本或逐批量加载。
+
+### 25. bfloat16 vs. float16
+
+**bfloat16** : 为神经网络专门设计的格式，牺牲精度换取更大的数值范围
+
+**bfloat16** 与 **float16** 位宽分配区别
+
+- float (IEEE 半精度)
+
+  - 1 位符号位
+ 
+  - 5 位指数位
+ 
+  - 10 位尾数位 
+
+- bfloat16 (Brain 浮点)
+
+  - 1 位符号位
+ 
+  - 8 位指数位
+ 
+  - 7 位尾数位 
+
+
+
+
+
+
+
 
 
 
