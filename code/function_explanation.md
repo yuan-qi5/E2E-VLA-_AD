@@ -290,7 +290,7 @@ name : 属性或方法的名字，必须是字符串类型
 
 ``` python
 
-getattr(object, name[, default])
+getattr(object, name[, default])  # [] 表示参数是可选的
 
 object : 要获取属性的对象
 name : 属性的名称，必须是字符串类型
@@ -389,11 +389,73 @@ Hugging Face `transformers` 库通常提供两种类型的分词器实现 ：
 
 - LLM.int8() 采用 mixed-precision dequantization（混合精度反量化），即针对 Transformer 的权重/激活分布，自动**区分重要和普通权重/激活**，普通采用 int8，重要数值保留位 float16/float32，推理时单独处理
 
-### llama.cpp、 vLLM
+### 28. llama.cpp、 vLLM
 
 **llama.cpp** ：用 C/C++ 编写的，支持本地高效运行 Meta Llama 系列大型语言模型的开源推理引擎。纯 CPI 运行，极致轻量。
 
 **vLLM** : 由加州大学伯克利分校开发的一个高效推理库，专为大语言模型在 GPU 上高性能推理设计，利用 "PagedAttention" 和 "动态 KV Cache"等创新技术极大提升 LLM 在生成文本时的吞吐量和并发能力，同时降低显存占用。
+
+### 29. PEFT ：Parameter-Efficient Fine-Tuning
+
+**PEFT** : 参数高效微调，由 HuggingFace 开发，专为大语言模型（LLM）、Transformer 等预训练模型设计的一套高效微调方法和工具包
+
+### 30. .\*? （非贪婪匹配）  vs .* （贪婪匹配） 
+
+`.` : 匹配任意单个字符（除了换行符）
+`*` : 匹配前一个元素出现 0 次或多次
+`?` : 匹配前一个元素出现 0 次或 1 次
+
+`.*` : 匹配 “任意长度的任意字符序列” （贪婪模式，尽可能多） 
+
+`.*?` ：任意字符，出现 0 次或多次，但尽可能少
+
+> 补充 ：'\d+\.\d+'
+>  `+` 表示出现 1 次或多次， '\.' 对 . 进行反转义 ，用来匹配一个小数
+
+### 31. `::` 在 Python 切片
+
+Python 中序列的切片一般格式如下 ：
+
+''' python
+sequence[start : stop : step]
+- start : 起始下标（包括该位置，默认从 0 开始）
+- stop : 结束下标（不包括该位置，默认到结尾）
+- step : 步长（每隔多少个取一次，默认是 1）
+'''
+
+`:: step` 相当于 `start=None, stop=None, step=step`
+
+### 32. adapter fusion 
+
+**adapter fusion** : 一种用于**参数高效微调**技术
+
+- 核心目标 ：利用多个后训练的 adapter，通过融合机制（如注意力、门控等）提升模型在多任务、多领域或少样本场景下的泛化与适应能力。
+
+### 33. DeepSpeed 
+
+**DeepSpeed** 是微软开发的一个开源**深度学习分布式训练与推理优化库**，主要用于提升大规模模型的训练和推理效率。支持多机多卡（分布式）、混合精度、模型并行、内存优化、超大批量训练等功能。
+
+核心功能 ：
+
+- ZeRO 优化器 (Zero Redundancy Optimizer)
+  - 作用 ：将模型参数、优化器状态、梯度等拆分分布到多块 GPU 上（sharding），最大程度减少显存冗余，支持百亿/千亿参数模型在少量显卡上高效训练
+  - 有三种 Stage :
+    - Stage 1 : 参数状态 sharding
+    - Stage 2 : 加上梯度 sharding
+    - Stage 3 : 连模型权重本身也 sharding， 
+
+- 大批量训练（Large Batch Training）
+  - 支持极大批量（甚至数十万到百万级）的样本并行训练，通过梯度累积和优化显存管理提升吞吐量 
+
+
+
+
+
+
+
+
+
+
 
 
 
