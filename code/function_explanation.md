@@ -356,15 +356,44 @@ Hugging Face `transformers` 库通常提供两种类型的分词器实现 ：
  
   - 7 位尾数位 
 
+## 25/05/20
 
+### 26. model sharding （模型切片） vs Data Parallel （数据并行）
 
+**model sharding** :
 
+- 将大型机器学习模型拆分为多个部分并分布在多个设备上进行训练和推理的技术。
+ 
+- 实现方式 ：
+  - tensor / parameter sharding ： 按参数张量切分
 
+  - layer / module sharding (pipeline parallelism) ：按模型结构切分
+ 
+  - hybrid sharding : 混合切分
 
+**Data Parallel** :
 
+- 每台机器/每块 GPU 有完整模型，各自计算一部分数据梯度然后全局同步
 
+### 27. bitsandbytes、GPTQ、LLM.int8()
 
+**bitsandbytes** : 由 Tim Dettmers 及其团队开发的一个高效的深度学习优化库，主要用于 PyTorch。核心功能为**支持高效的低比特量化**和**稀疏**技术。
 
+**GPTQ(Generative Pre-trained Transformer Quantization)** : 针对大规模 Transformer 模型的高效权重量化，旨在实现极低比特宽度（如 4bit、3bit）下模型推理速度提升、显存减小且精度损失很小。
+
+- 一般用于 **大模型的后训练**，不需要重新训练，只需对训练好的模型做量化。
+
+**LLM.int8()** : 针对 LLM 的 8-bits 量化技术
+
+- 传统 int8 量化直接将权重/激活全部 int8 量化，由于有些权重分布 “异常值” 对输出影响巨大，易造成精度大幅下降
+
+- LLM.int8() 采用 mixed-precision dequantization（混合精度反量化），即针对 Transformer 的权重/激活分布，自动**区分重要和普通权重/激活**，普通采用 int8，重要数值保留位 float16/float32，推理时单独处理
+
+### llama.cpp、 vLLM
+
+**llama.cpp** ：用 C/C++ 编写的，支持本地高效运行 Meta Llama 系列大型语言模型的开源推理引擎。纯 CPI 运行，极致轻量。
+
+**vLLM** : 由加州大学伯克利分校开发的一个高效推理库，专为大语言模型在 GPU 上高性能推理设计，利用 "PagedAttention" 和 "动态 KV Cache"等创新技术极大提升 LLM 在生成文本时的吞吐量和并发能力，同时降低显存占用。
 
 
 
