@@ -447,8 +447,25 @@ sequence[start : stop : step]
 - 大批量训练（Large Batch Training）
   - 支持极大批量（甚至数十万到百万级）的样本并行训练，通过梯度累积和优化显存管理提升吞吐量 
 
+## 25/05/25
 
+### 34. eval()
 
+`eval()` : Python 内置函数，用来执行存储在字符串中的表达式，并返回表达式的值
+
+``` python
+eval(expression, globals=None, locals=None)
+```
+`expression` : 要计算的字符串表达式
+`globals` : 可选，全局变量字典
+`locals` : 可选，局部变量字典 （变量查找顺序，先 globals，后 locals）
+
+> eval 极为危险，因为它可以执行任意代码，包括删除文件、发送网络请求等危险操作。
+> 尤其当 eval 内容来自用户输入时，千万不要用 eval()
+ 
+### 35. @property
+
+`@property` : Python 中的装饰器，主要用于把一个类的方法 “伪装” 成属性来访问,而不需要加括号。
 
 
 
