@@ -467,7 +467,30 @@ eval(expression, globals=None, locals=None)
 
 `@property` : Python 中的装饰器，主要用于把一个类的方法 “伪装” 成属性来访问,而不需要加括号。
 
+### 36. accelerate 库
 
+**Accelerate** 由 HuggingFace 推出的一个用于简化多设备深度学习训练的库，用极少的代码改动，把原本单机、单卡的 Pytorch 训练脚本，快速迁移到多 GPU、多 TPU 甚至多机的环境下运行。
+
+Ex（四行代码改动） :
+``` python
++ from accelerate import Accelerator
++ accelerator = Accelerator()
+
++ model, optimizer, training_dataloader, scheduler = accelerator(
+  model, optimizer, training_dataloader, scheduler
+)
+
+for batch in training_dataloader:
+    optimizer.zero_grad()
+    inputs, targets = batch
+    inputs = inputs.to(device)
+    targets = targets.to(device)
+    outputs = model(inputs)
+    loss = loss_function(outputs, targets)
++   accelerator.backward(loss)
+    optimizer.step()
+    scheduler.step()   # scheduler : 学习率调度器，用于动态调整优化器的学习率
+```
 
 
 
