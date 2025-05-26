@@ -504,7 +504,10 @@ for batch in training_dataloader:
 
 **Gradient Accumulation（梯度累积）** ： 在深度学习训练时，分多步累积梯度再更新梯度，此时计算出来损失应除以累积步数（gradient_accumulation_steps），以保证是 “平均每一步的损失”，从而与 batch_size 不相关。
 
+### 39. 字典 “解包合并”
 
+ex : `inputs = {**inputs, **loss_kwargs}`
+inputs，loss_kwargs 都是字典，把两个字典**合并成一个新字典**，其中**相同的键以后面的为准**。
 
 
 
