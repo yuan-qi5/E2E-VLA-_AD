@@ -492,6 +492,22 @@ for batch in training_dataloader:
     scheduler.step()   # scheduler : 学习率调度器，用于动态调整优化器的学习率
 ```
 
+## 25/05/26
+
+### 37. NVIDIA Apex 
+
+**NVIDIA Apex** 是由 NVIDIA 开发的一个 PyTorch 扩展库，**主要用于实现混合精度训练**（mixed precision training）和相关的性能优化
+
+**混合精度训练** ：同时用 FP16（半精度）和 FP32（单精度）加速训练
+
+### 38. Gradient Accumulation 
+
+**Gradient Accumulation（梯度累积）** ： 在深度学习训练时，分多步累积梯度再更新梯度，此时计算出来损失应除以累积步数（gradient_accumulation_steps），以保证是 “平均每一步的损失”，从而与 batch_size 不相关。
+
+
+
+
+
 
 
 
