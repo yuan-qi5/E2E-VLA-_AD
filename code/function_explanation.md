@@ -509,9 +509,21 @@ for batch in training_dataloader:
 ex : `inputs = {**inputs, **loss_kwargs}`
 inputs，loss_kwargs 都是字典，把两个字典**合并成一个新字典**，其中**相同的键以后面的为准**。
 
+## 25/05/27
 
+### 40. Optuna (HyperParameter Optimization,HPO)
 
+**Optuna** 是一个自动超参数优化的 Python 库，可以自动寻找最优的超参数组合。
 
+`optuna.Trail` 是 Optuna 里用来封装一次参数采样过程的核心类。
+
+### 41. ForwardRef
+
+在 Python 中，ForwardRef 是类型注释中处理**前向引用**的机制，即包装在当前位置尚未定义的类型，等到真正类型检查或运行时再解析实际的类型对象。
+
+### 42. (None) vs. (None,) vs. None
+
+None 与 (None) 等价，(None,) 表示一个包含 None 的元组
 
 
 
