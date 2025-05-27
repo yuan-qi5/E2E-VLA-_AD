@@ -517,13 +517,38 @@ inputs，loss_kwargs 都是字典，把两个字典**合并成一个新字典**�
 
 `optuna.Trail` 是 Optuna 里用来封装一次参数采样过程的核心类。
 
-### 41. ForwardRef
+### 41. Python 类型注释 ForwardRef , Callable 
 
-在 Python 中，ForwardRef 是类型注释中处理**前向引用**的机制，即包装在当前位置尚未定义的类型，等到真正类型检查或运行时再解析实际的类型对象。
+ForwardRef 是类型注释中处理**前向引用**的机制，即包装在当前位置尚未定义的类型，等到真正类型检查或运行时再解析实际的类型对象。
+
+Callable 用于标注可以像函数一样被调用的对象。
+- Callable : 只要求能 “被调用”
+- Callable[[参数类型 ,...], 返回值类型] ：指定参数和返回类型
+- Callable[..., 返回值类型] ：参数不固安，只要求返回值类型
 
 ### 42. (None) vs. (None,) vs. None
 
 None 与 (None) 等价，(None,) 表示一个包含 None 的元组
+
+### 43. dataclasses
+
+`dataclasses` 是 Python3.7 及以上标准库中引入的一个模块，用于**简化数据类的定义**。主要用于自动生成常见的类方法（如 `__init__`、`__repr__`、`__eq__` 等）
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
