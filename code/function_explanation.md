@@ -562,8 +562,25 @@ None 与 (None) 等价，(None,) 表示一个包含 None 的元组
 - 在模型训练前，必须初始化优化器（optimizer）和学习率调度器（scheduler），这样才能在后续训练循环中进行参数更新与学习控制
 - 但有些分布式训练模式（如 ShardedDDP、FSDP、SageMaker MP）要求等模型完全初始化、参数都分配到正确设备后在创建优化器，否则容易出错
 
+## 25/05/31
 
+### 48. `tempfile` 
 
+`tempfile` 是 Python 标准库中一个用于创建临时文件和目录的模块，这些文件和目录会在不需要时自动删除，避免 “文件垃圾”
+
+`tempfile.TemporaryFile()` ：
+
+ - 创建一个临时文件对象，用法和普通文件对象一样，但关闭后会自动删除
+ - 常用于二进制/文本临时数据处理
+
+`tempfile.NamedTemporaryFile()`
+
+- 创建一个带文件名的临时文件（有真实路径），可被其他进程访问
+- 默认 delete=True，文件关闭后自动删除
+
+`tempfile.TemporaryDirectory()`
+
+- 创建一个临时目录对象，退出 with 块后自动递归删除目录及其内容
 
 
 
