@@ -11,6 +11,8 @@ my learning notes of VLA <br>
   - [LightEMMA][10] : Lightweight End-to-End Multimodal  Model for Autonomous Driving
   - [nuPlan][11] : A closed-loop ML-based planning benchmark for autonomous vehicles
   - [nuScenes][12] : A multimodal dataset for autonomous driving
+  - [Drive-R1][13] : Drive-R1: Bridging Reasoning and Planning in VLMs for Autonomous Driving with Reinforcement Learning
+  - [Impromptu-VLA][14] : Open Weights and Open Data for Driving Vision-Language-Action Models
 
 - [code][2]
 
@@ -27,6 +29,8 @@ my learning notes of VLA <br>
 [10]:https://github.com/yuan-qi5/VLA/blob/main/paper/LightEMMA.md
 [11]:https://github.com/yuan-qi5/VLA/blob/main/paper/nuPlan.md
 [12]:https://github.com/yuan-qi5/VLA/blob/main/paper/nuScenes.md
+[13]:https://github.com/yuan-qi5/VLA/blob/main/paper/Drive-R1.md
+[14]:https://github.com/yuan-qi5/VLA/blob/main/paper/Impromptu-VLA.md
 
 
 
