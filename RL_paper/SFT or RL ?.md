@@ -77,7 +77,16 @@ Metadata Collection ---> Visual Input and Additional Information ---> Reansoning
 ## Improving Multimodal Reasoning with Mixed Rewards
 
 ### GRPO with Mixed Reward
- 
+
+为让 GRPO 方法更适应多模态推理（结合文本和视觉），除了传统文本奖励外，还引入了视觉特有的奖励类型，提出了一个包含感知和推理的混合奖励框架（mixed reward framework）以全面激励模型在视觉-语言理解上能力。 
+
+该奖励框架包含具有两种格式的五种类型的可验证奖励，包括视觉感知和视觉推理任务。
+
+- rule-based reward : 
+
+- open-ended reward
+
+![mixed_reward_framework](./pictures/mixed_reward_framenwork.png)
 
 ### Effect of SFT on GPRO Training
 
@@ -92,8 +101,9 @@ Metadata Collection ---> Visual Input and Additional Information ---> Reansoning
 
 - Earlier VL methods，such as few-shot prompting and chain-of-thought (VoT)
 
-- Recently, LLaVA-CoT
+- Recently, LLaVA-CoT 采用 SFT 方法（4 步结构化输出）来增强模型的推理能力，但由于其输出格式僵化，缺乏灵活性
 
+- More recently, newer models incorporate more natural reasoning traces and reinforcement learning
 
 ### Reward Modeling in Reinforcement Learning
 
