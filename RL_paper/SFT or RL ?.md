@@ -8,8 +8,6 @@
 
 - 具体地说，探讨在多模态推理中 SFT 和 RL 的区别是什么以及这种两阶段范式对于 LVLMs 的推理是否必要
 
-![]()
-
 ### How does the paper address the above challenges ?
 
 - 创建了 VLAA-Thinking 数据集，图像-文本推理数据集，明确设置用于支持 SFT 和 RL
