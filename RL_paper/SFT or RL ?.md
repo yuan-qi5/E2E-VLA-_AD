@@ -46,8 +46,6 @@ Metadata Collection ---> Visual Input and Additional Information ---> Reansoning
 
 ![vlaa_thinking_dataset_statistics](./pictures/vlaa_thinking_dataset_statistics.png)
 
-> 个人小疑问：在 #6: Curating Splits for SFT and RL 中，为 RL 挑选更具挑战性的样本（通过 self-reflective cues 来判断），对 SFT-split。排除带有 aha moment 的样本，因为过于复杂使得模型无法模仿。这是否不太公平？
-
 ## Investigating The Role of SFT for Multimodal Reasoning
 
 研究发现，SFT 中的 self-reflection thinking ("aha moments") 充斥着过度和不相关的推理，成为 “伪顿悟时刻 (pseudo aha moments)” 并损害性能。
