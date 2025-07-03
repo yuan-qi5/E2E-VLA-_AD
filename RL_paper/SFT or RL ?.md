@@ -82,18 +82,47 @@ Metadata Collection ---> Visual Input and Additional Information ---> Reansoning
 
 该奖励框架包含具有两种格式的五种类型的可验证奖励，包括视觉感知和视觉推理任务。
 
-- rule-based reward : 
+**rule-based reward** : 
 
-- open-ended reward
+  - digit matching ： 回答来自 CLEVR-Math 的计数问题，答案是一个数字
+
+  - option letter matching：多项选择题
+
+  - math expression matching：要求模型解决一个数学问题，如找到一个函数表达式或圆锥体积，以 latex 格式输出其答案，使用 Math Verify3 包检查正确性
+
+  - Intersection over Union for bounding boxes：提示模型输出图像中对象的边界框坐标，并计算 IoU 分数（范围从 0 到 1）
+
+**open-ended reward** : 使用 InternLM-XComposer2.5-Reward 作为评分器，以图像和 QA 对作为输入，并输出一个奖励分数。分数被正则化到 [0, 1] 以与基于规则的奖励规模一致
+
+**Implicit Format Reward**:
+
+- 以前很多工作（如 DeepSeek-r1）会单独奖励输出格式正确，但这样会让奖励函数复杂，还可能限制模型探索
+
+- 不再单独加格式奖励，而是让格式奖励 “覆盖” 一切，即只要模型输出的内容不能被提取为一个有效的答案，奖励就直接设为0。
+
+- 实验证明，只要提示语写好，模型最终会自己学会格式，不需要额外奖励项
 
 ![mixed_reward_framework](./pictures/mixed_reward_framenwork.png)
 
 ### Effect of SFT on GPRO Training
 
+![benchmark_results_different_backbone](./pictures/benchmark_results_different_backbone.png)
+
+在多模态推理中，SFT 与 GRPO 并不兼容，且与没有指令跟随功能的基本模型相比，SFT 给指令跟随模型带来了更多的退化。
+
+![different_size_impact_SFT](./pictures/different_size_impact_SFT.png)
+
+较小的 SFT 数据集仍然会影响 GRPO 性能。（较小数据集按 PPL 过滤方式，选取 top-5k，top-10k）
+
+![GRPO_response_length_reward](./pictures/GRPO_reponse_length_reward.png)
+
+GRPO 的反应长度和奖励不是推理能力的可靠指标。有趣的是 SFT-ed model 初始奖励更高，但很快会被 GRPO-only model 超越。因此认为，推理是一种更有可能由 GRPO 发展起来的能力，SFT-ed model 看似在推理但其行为更接近与模式模仿，一种缺乏概括推理技能的伪推理形式。
 
 ### GRPO Training without SFT
 
-### 
+### Ablations
+
+![mixed_reward_ablation](./pictures/mixed_reward_ablation.png)
 
 ## Related Work
 
