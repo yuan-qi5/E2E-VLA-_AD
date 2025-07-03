@@ -120,15 +120,33 @@ GRPO 的反应长度和奖励不是推理能力的可靠指标。有趣的是 SF
 
 ### GRPO Training without SFT
 
+![direct_GRPO_benchmarks](./pictures/direct_GRPO_benchmarks.png)
+
+- 直接 GRPO 训练提高模型性能
+
+- stronger Insturction Model leads to better post-GRPO reasoning
+
+![heatmap_different_aha_expressions](./pictures/heatmap_different_aha_expressions.png)
+
+- GRPO 训练可以诱导真实的自我反思过程
+
+- 顿悟时刻的数量与模型整体性能没有直接关系，因为顿悟时刻越多并不一定意味着推理得分越高
+
 ### Ablations
 
 ![mixed_reward_ablation](./pictures/mixed_reward_ablation.png)
+
+- mixed reward : 混合奖励策略的有效，特别强调了 GRPO 中 rule-based rewards 的有效性
+
+![lr_kl_ablation](./pictures/lr_kl_ablation.png)
+
+- Hyperparameters : 研究 learning rates(LR) 和 KL divergence
 
 ## Related Work
 
 ### Vision-Language Reasoning Models
 
-- Earlier VL methods，such as few-shot prompting and chain-of-thought (VoT)
+- Earlier VL methods，such as few-shot prompting and chain-of-thought (CoT)
 
 - Recently, LLaVA-CoT 采用 SFT 方法（4 步结构化输出）来增强模型的推理能力，但由于其输出格式僵化，缺乏灵活性
 
@@ -138,6 +156,6 @@ GRPO 的反应长度和奖励不是推理能力的可靠指标。有趣的是 SF
 
 ## Conclusion
 
-
+蒸馏推理数据并进行 SFT 是一种由区县的跨模态转移推理能力，推理能力是从 RL 中获得的一种天然的新兴能力，而不仅仅是为模型 “伪推理” 能力的 SFT。
 
 
