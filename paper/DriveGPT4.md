@@ -82,11 +82,42 @@ Control signals 与 text 使用相同的分词器，采用 default LLaMA tokeize
 
 ### Training 
  
-**Pretraining**  冻结 CLIP encoder and LLM weights，仅训练 projector。使用 593K image-text pairs from CC3M 和 703K video-text pairs from WebVid-2M
+#### Pretraining 
 
-**Mix-finetune** 冻结 CLIP encoder，仅训练 LLM and projector。使用 56K video-text 指令跟随数据微调，但 56K AD domain data 对于 LLM 微调不充分，使其有严重的幻觉问题。再利用 LLaVA 和 Valley 生成的 223K 通用指令跟随数据进行混合微调。"Mix" 代表将通用指令数据和任务特定的指令调优数据一起用于训练。先使用 223K 进行微调再使用 56K 进行微调。
+冻结 CLIP encoder and LLM weights，仅训练 projector。使用 593K image-text pairs from CC3M 和 703K video-text pairs from WebVid-2M
+
+#### Mix-finetune 
+
+- 冻结 CLIP encoder，仅训练 LLM and projector。使用 56K video-text 指令跟随数据微调，但 56K AD domain data 对于 LLM 微调不充分，使其有严重的幻觉问题。
+
+- 再利用 LLaVA 和 Valley 生成的 223K 通用指令跟随数据进行混合微调。
+
+- "Mix" 代表将通用指令数据和任务特定的指令调优数据一起用于训练。先使用 223K 进行微调再使用 56K 进行微调。
 
 ## Experiment
+
+采用过滤后的 BDD-X 数据集进行实验，去除控制信号和文本推理不一致的样本。
+
+### Interpretable Autonomous Driving
+
+**Testing Set Split**：由于 AD 中场景分布不平衡，为了进行综合评价比较，测试集分为 "Easy", "Medium", "Hard" 三组
+
+**Evaluation Metrics**: 使用 CIDEr, BLEU4, ROUGH-L 以及 ChatGPT 评分（注意到 ChatGPT 评分不稳定，采用三次评估的平均值）
+
+**Action Description and Justification**: 
+
+![DriveGPT4_result_4](./pictures/DriveGPT4_result_4.png)
+
+![DriveGPT4_result_5](./pictures/DriveGPT4_result_5.png)
+
+**Additional Question Answering** : 从 BDD-X testing set 从随机采样 video clips for question generation
+
+![QAs_DriveGPT4](./pictures/QAs_DriveGPT4.png)
+
+**End-to-end Control**: open-loop control signal prediction，specifically focusing on speed and turning angle，使用 RMSE 和 threshold accuracy for evaluation（测量预测误差低于阈值的样本的比例，将阈值设为 0.1, 0.5, 1.0, 5.0)
+
+![QAs_DriveGPT4](./pictures/QAs_DriveGPT4.png)
+
 
 
 ## 扩展阅读
