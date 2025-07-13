@@ -116,8 +116,7 @@ Control signals 与 text 使用相同的分词器，采用 default LLaMA tokeize
 
 **End-to-end Control**: open-loop control signal prediction，specifically focusing on speed and turning angle，使用 RMSE 和 threshold accuracy for evaluation（测量预测误差低于阈值的样本的比例，将阈值设为 0.1, 0.5, 1.0, 5.0)
 
-![QAs_DriveGPT4](./pictures/QAs_DriveGPT4.png)
-
+![QAs_DriveGPT4](./pictures/QAs_DriveGPT41111.png)
 
 
 ## 扩展阅读
