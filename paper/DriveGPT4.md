@@ -49,7 +49,7 @@ BDD-X 提供三种类型标签：vehicle action descriptions、action justificat
 
 DriveGPT4 is mLLM：
 
-- video tokenizer based on Valley，视频呗均匀采样成固定的数量的图像
+- video tokenizer based on Valley，视频被均匀采样成固定的数量的图像
 
 - LLM use LLaMA2
 
