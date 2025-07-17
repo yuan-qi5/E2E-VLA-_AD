@@ -15,8 +15,8 @@ my learning notes of VLA <br>
   - [Impromptu-VLA][14] : Open Weights and Open Data for Driving Vision-Language-Action Models
   - [DriveGPT][15] : Interpretable End-to-end  Autonomous Driving via Large Language Model
   - [LingoQA][16] : LingoQA: Visual Question Answering for Autonomous Driving
-  - [GPT-Driver][17]
-  - [DriveLM][18]
+  - [GPT-Driver][17] : Learning To Drive With GPT
+  - [DriveLM][18] : DriveLM: Driving with Graph Visual Question Answering
   - [][19]
 
 
@@ -39,7 +39,8 @@ my learning notes of VLA <br>
 [14]:https://github.com/yuan-qi5/VLA/blob/main/paper/Impromptu-VLA.md
 [15]:https://github.com/yuan-qi5/VLA/blob/main/paper/DriveGPT4.md
 [16]:https://github.com/yuan-qi5/VLA/blob/main/paper/LingoQA.md
-
+[17]:https://github.com/yuan-qi5/VLA/blob/main/paper/DriveLM.md
+[18]:https://github.com/yuan-qi5/VLA/blob/main/paper/GPT-Driver.md
 
 
 
