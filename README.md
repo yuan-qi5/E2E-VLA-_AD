@@ -14,7 +14,10 @@ my learning notes of VLA <br>
   - [Drive-R1][13] : Drive-R1: Bridging Reasoning and Planning in VLMs for Autonomous Driving with Reinforcement Learning
   - [Impromptu-VLA][14] : Open Weights and Open Data for Driving Vision-Language-Action Models
   - [DriveGPT][15] : Interpretable End-to-end  Autonomous Driving via Large Language Model
-  - [LingoQA][16] : LingoQA: Visual Question Answering for Autonomous Driving 9
+  - [LingoQA][16] : LingoQA: Visual Question Answering for Autonomous Driving
+  - [GPT-Driver][17]
+  - [DriveLM][18]
+  - [][19]
 
 
 - [code][2]
