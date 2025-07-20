@@ -17,7 +17,7 @@ my learning notes of VLA <br>
   - [LingoQA][16] : LingoQA: Visual Question Answering for Autonomous Driving
   - [GPT-Driver][17] : Learning To Drive With GPT
   - [DriveLM][18] : DriveLM: Driving with Graph Visual Question Answering
-  - [][19]
+  - [Drama][19] : DRAMA: Joint Risk Localization and Captioning in Driving
 
 
 - [code][2]
@@ -41,7 +41,7 @@ my learning notes of VLA <br>
 [16]:https://github.com/yuan-qi5/VLA/blob/main/paper/LingoQA.md
 [17]:https://github.com/yuan-qi5/VLA/blob/main/paper/DriveLM.md
 [18]:https://github.com/yuan-qi5/VLA/blob/main/paper/GPT-Driver.md
-
+[19]:https://github.com/yuan-qi5/VLA/blob/main/paper/Drama.md
 
 
 
