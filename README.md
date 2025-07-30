@@ -39,8 +39,8 @@ my learning notes of VLA <br>
 [14]:https://github.com/yuan-qi5/VLA/blob/main/paper/Impromptu-VLA.md
 [15]:https://github.com/yuan-qi5/VLA/blob/main/paper/DriveGPT4.md
 [16]:https://github.com/yuan-qi5/VLA/blob/main/paper/LingoQA.md
-[17]:https://github.com/yuan-qi5/VLA/blob/main/paper/DriveLM.md
-[18]:https://github.com/yuan-qi5/VLA/blob/main/paper/GPT-Driver.md
+[17]:https://github.com/yuan-qi5/VLA/blob/main/paper/GPT-Driver.md
+[18]:https://github.com/yuan-qi5/VLA/blob/main/paper/DriveLM.md
 [19]:https://github.com/yuan-qi5/VLA/blob/main/paper/Drama.md
 
 
