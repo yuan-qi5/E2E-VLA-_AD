@@ -81,8 +81,7 @@ GCoT 中描述 grounding method for CoT, 接着介绍自动驾驶中视频文本
 
 我们模型基于 OpenFlamingo 架构，命名为 Dolphins。该模型由视觉编码器 CLIP，从视觉编码特征进行重采样的 perceiver resampler，以及来自大语言模型的文本编码器，并且配备了用于图像-文本交互的门状交叉注意力层。
 
-与 Flamingo 相比，OpenFlamingo 缺乏对 video input 的支持，因此我们引入了一组可学习的潜在向量作为时间位置嵌入，另一组可学习的潜在向量作为
-这些嵌入的增加显著提高了模型的视频理解能力。
+与 Flamingo 相比，OpenFlamingo 缺乏对 video input 的支持，因此我们引入了一组可学习的潜在向量作为时间位置嵌入，另一组可学习的潜在向量作为媒体位置嵌入以引入必要的顺序信息。这些嵌入的增加显著提高了模型的视频理解能力。
 
 为减少计算消耗，我们冻结了编码器，只微调感知重采样模块、门控交叉注意力层和 LoRA 模块。
 
@@ -92,8 +91,11 @@ GCoT 中描述 grounding method for CoT, 接着介绍自动驾驶中视频文本
 
 ### Implementation Details
 
+受 Otter 的启发，我们采用类似格式来准备指令微调数据集，此外还在每个任务开头引入一个特定的任务定义，作为任务级指令，有助于模型理解相同类型的自主驾驶相关视频-指令对的更广泛上下文。
+
 ![dolphin_imple_detail](./pictures/dolphin_imple_detail.png)
 
+相比于现有 vlm 的两阶段训练，第一阶段用于对齐视频文本特征，第二阶段用于视觉指令微调。我们第一阶段直接在配备 GCoT 的通用指令数据集微调，大二阶段在 AD 指令数据集进一步微调，以迁移细粒度理解和推理能力。
 
 
 ## Conclusion and Future Directions
