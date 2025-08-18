@@ -20,7 +20,7 @@
 ## Dataset
 
 
-
+![IDD_X_figure2.png](./pictures/IDD_X_figure2.png)
 
 
 ## Tasks
