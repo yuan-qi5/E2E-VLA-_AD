@@ -1,5 +1,5 @@
-# VLA
-my learning notes of VLA <br>
+# AD_E2E_VLA
+my learning notes of  E2E / VLA in AD <br>
 - [paper][1]
   - [CoVLA][3] : Comprehensive Vision-Language-Action Dataset for Autonomous Driving (24/08 arxiv)
   - [OpenDriveVLA][4] : OpenDriveVLA: Towards End-to-end Autonomous Driving with Large Vision Language Action Model (25/03 arxiv)
