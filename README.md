@@ -17,8 +17,7 @@ my learning notes of  E2E / VLA in AD <br>
   - [LingoQA][16] : LingoQA: Visual Question Answering for Autonomous Driving
   - [GPT-Driver][17] : Learning To Drive With GPT
   - [DriveLM][18] : DriveLM: Driving with Graph Visual Question Answering
-  - [Drama][19] : DRAMA: Joint Risk Localization and Captioning in Driving
-  - [IDD-X][20] : IDD-X : A multi-view dataset for ego-relative important object localization and explanation in dense and unstructured traffic.
+ 
   - [][21]
 - [RL paper][20]
 
@@ -43,7 +42,7 @@ my learning notes of  E2E / VLA in AD <br>
 [16]:https://github.com/yuan-qi5/VLA/blob/main/paper/LingoQA.md
 [17]:https://github.com/yuan-qi5/VLA/blob/main/paper/GPT-Driver.md
 [18]:https://github.com/yuan-qi5/VLA/blob/main/paper/DriveLM.md
-[19]:https://github.com/yuan-qi5/VLA/blob/main/paper/Drama.md
+ 
 [20]:https://github.com/yuan-qi5/VLA/tree/main/RL_paper
 
 
